@@ -1,7 +1,25 @@
 const resultDisplay = document.querySelector("[resultDisplay]");
 const inputDisplay = document.querySelector("[inputDisplay]");
 const allButtons = document.querySelectorAll(".btn");
-const validCharacters = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "(", ")", "%", "/", "*", "-", "+"];
+const validCharacters = [
+  "0",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "(",
+  ")",
+  "%",
+  "/",
+  "*",
+  "-",
+  "+",
+];
 
 let inputResult = "";
 let outputResult = "0";
@@ -11,7 +29,7 @@ let cursorPosition = 0;
 showOutputResult();
 
 // Set focus on the input display when the window is clicked
-window.addEventListener("click", setFocus);
+// window.addEventListener("click", setFocus);
 
 // Clear the input screen
 function clearInputScreen() {
@@ -63,7 +81,8 @@ function evaluateResult() {
 }
 
 // Update the cursor position when the input display is clicked
-inputDisplay.addEventListener("click", () => {
+inputDisplay.addEventListener("click", (e) => {
+  e.preventDefault();
   cursorPosition = inputDisplay.selectionStart;
 });
 
@@ -107,18 +126,21 @@ function handleButtonClick(buttonValue) {
 
 // Attach click event listeners to all the buttons
 allButtons.forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", (e) => {
+    e.preventDefault();
     handleButtonClick(button.value);
   });
 });
 
 // Handle keydown events on the input display
 inputDisplay.addEventListener("keydown", (e) => {
+  e.preventDefault();
   if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
     // handling edge cases
     if (e.key == "ArrowLeft" && cursorPosition > 0) cursorPosition -= 1;
     if (e.key == "ArrowRight" && cursorPosition < inputResult.length)
       cursorPosition += 1;
+    showInputResult();
   } else if (e.key === "Backspace") {
     removeCharacter();
     setTimeout(() => {
@@ -133,4 +155,5 @@ inputDisplay.addEventListener("keydown", (e) => {
       showInputResult();
     }, 0);
   }
+  setFocus();
 });
