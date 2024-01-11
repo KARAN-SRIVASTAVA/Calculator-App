@@ -1,25 +1,7 @@
 const resultDisplay = document.querySelector("[resultDisplay]");
 const inputDisplay = document.querySelector("[inputDisplay]");
 const allButtons = document.querySelectorAll(".btn");
-const validCharacters = [
-  "0",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "(",
-  ")",
-  "%",
-  "/",
-  "*",
-  "-",
-  "+",
-];
+const validCharacters = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "(", ")", "%", "/", "*", "-", "+"];
 
 let inputResult = "";
 let outputResult = "0";
